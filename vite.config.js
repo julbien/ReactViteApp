@@ -7,6 +7,6 @@ export default defineConfig({
   base: '/ReactViteApp/',
   server: {
     port: 3000,
-    oepn: true,
+    open: true,
   },
 })
