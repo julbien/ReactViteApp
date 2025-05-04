@@ -1,0 +1,30 @@
+name: React App CI/CD
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Node,js
+        users: actions/setup-node@v2
+        with:
+          node-version: "20.16.0"
+      
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build the app
+        run: npm rub build
+
+      - name: Deploy to Github Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
+          publish_branch: gh-pages
